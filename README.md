@@ -1,77 +1,125 @@
+
 # MMM-Sunrise-Sunset
-A MagicMirror module to show local sunrise/sunset/noon times
-> This is an extension to the [MagicMirror](https://github.com/MichMich/MagicMirror) project, allowing the display of local sunrise, sunset and solar noon times.
+A MagicMirror module to show local sunrise, sunset, and solar noon times.
 
-![](https://raw.githubusercontent.com/prydonian/MMM-Sunrise-Sunset/master/Screenshot.png)
+> This is an extension for the [MagicMirror](https://github.com/MichMich/MagicMirror) project. It displays local sunrise, sunset, and solar noon times.
 
-![](https://raw.githubusercontent.com/prydonian/MMM-Sunrise-Sunset/master/List.png)
+## Features
+- Displays sunrise and sunset times.
+- Two layouts: "inline" or "list".
+- Fetches data from [IP Geolocation API](https://ipgeolocation.io/).
+
+![Inline Layout](https://raw.githubusercontent.com/prydonian/MMM-Sunrise-Sunset/master/Screenshot.png)
+![List Layout](https://raw.githubusercontent.com/prydonian/MMM-Sunrise-Sunset/master/List.png)
+
+---
 
 ## Installation
-Run these commands at the root of your magic mirror install.
 
-```shell
-cd modules
-git clone https://github.com/prydonian/MMM-Sunrise-Sunset
-```
+1. Navigate to your MagicMirror `modules` folder:
+   ```bash
+   cd ~/MagicMirror/modules
+   ```
+
+2. Clone the repository:
+   ```bash
+   git clone https://github.com/cgillinger/MMM-Sunrise-Sunset.git
+   ```
+
+3. Navigate to the module folder:
+   ```bash
+   cd MMM-Sunrise-Sunset
+   ```
+
+4. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+5. Fix `jQuery` loading issue:
+   ```bash
+   cp ./node_modules/jquery/dist/jquery.js .
+   ```
+
+---
 
 ## Updating
 
-```shell
-cd MagicMirror/modules/MMM-Sunrise-Sunset
+To update the module, navigate to the module's folder and pull the latest changes:
+```bash
+cd ~/MagicMirror/modules/MMM-Sunrise-Sunset
 git pull
 ```
 
-## Using the module
-To use this module, add the following configuration block to the modules array in the `config/config.js` file.
-Works best in the bottom_bar position when the layout is set to "inline".
+If there are new dependencies, install them:
+```bash
+npm install
+```
 
-```js
+---
+
+## Configuration
+
+To use this module, add the following configuration block to the `modules` array in your `config/config.js` file.
+
+```javascript
 var config = {
     modules: [
         {
             module: 'MMM-Sunrise-Sunset',
-            position: "bottom_bar",
+            position: "top_right", // Or any other valid position
             config: {
-                // See below for configurable options
+                latitude: 59.3293,  // Your latitude (e.g., for Stockholm)
+                longitude: 18.0686, // Your longitude (e.g., for Stockholm)
+                apiKey: "YOUR_API_KEY", // Get a free API key from https://ipgeolocation.io/
+                layout: "list", // "inline" or "list"
+                showSunrise: true,
+                showSunset: true,
+                timeFormat: 24 // Use 24-hour time format
             }
         }
     ]
 }
 ```
 
-<table width="100%">
-	<!-- why, markdown... -->
-	<thead>
-		<tr>
-			<th>Option</th>
-			<th width="100%">Description</th>
-		</tr>
-	<thead>
-	<tbody>
-		<tr>
-			<td><code>latitude</code>*</td>
-			<td>
-      Your local latitude. e.g.: "21.567"
-			</td>
-		</tr>
-		<tr>
-			<td><code>longitude</code>*</td>
-			<td>
-      Your local longitude. e.g.: "12.789"
-			</td>
-		</tr>
-		<tr>
-			<td><code>apiKey</code>*</td>
-			<td>
-      Sign up at https://ipgeolocation.io/signup.html for a free API key
-   			</td>
-		</tr>
-		<tr>
-			<td><code>layout</code>*</td>
-			<td>
-      "inline" or "list"
-			</td>
-		</tr>
-	</tbody>
-</table>
-*required
+---
+
+## Options
+
+| **Option**        | **Description**                                                                 |
+|--------------------|---------------------------------------------------------------------------------|
+| `latitude`         | Your local latitude (e.g., `"59.3293"` for Stockholm). *Required*.             |
+| `longitude`        | Your local longitude (e.g., `"18.0686"` for Stockholm). *Required*.            |
+| `apiKey`           | API key from [IP Geolocation](https://ipgeolocation.io/). *Required*.          |
+| `layout`           | Choose between `"inline"` or `"list"`.                                         |
+| `showSunrise`      | Show sunrise time. Default: `true`.                                            |
+| `showSunset`       | Show sunset time. Default: `true`.                                             |
+| `timeFormat`       | Use `12` for 12-hour format or `24` for 24-hour format. Default: `24`.         |
+
+---
+
+## Troubleshooting
+
+### Fix for "Loading..." Issue
+If the module gets stuck on "Loading...", ensure the following:
+1. **Install jQuery:**
+   ```bash
+   npm install jquery
+   ```
+
+2. **Copy `jquery.js` to the module folder:**
+   ```bash
+   cp ./node_modules/jquery/dist/jquery.js .
+   ```
+
+3. Restart MagicMirror:
+   ```bash
+   npm start
+   ```
+
+If the problem persists, open an issue on the [GitHub repository](https://github.com/cgillinger/MMM-Sunrise-Sunset/issues).
+
+---
+
+## License
+This module is licensed under the [MIT License](https://opensource.org/licenses/MIT).
