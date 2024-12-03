@@ -1,21 +1,18 @@
 
 # MMM-Sunrise-Sunset
-A MagicMirror module to show local sunrise, sunset, and solar noon times.
 
-> This is an extension for the [MagicMirror](https://github.com/MichMich/MagicMirror) project. It displays local sunrise, sunset, and solar noon times.
+A MagicMirror module to display local sunrise and sunset times.
 
-### **Credits**
-This module, `MMM-Sunrise-Sunset`, was originally developed by [prydonian](https://github.com/prydonian).  
-Their work provided the foundation for this MagicMirror module.  
-This fork includes updates and fixes to enhance compatibility and usability.
+This module is an extension of the MagicMirror project, allowing users to display sunrise and sunset times with flexible configuration options.
+
+---
 
 ## Features
-- Displays sunrise and sunset times.
-- Two layouts: "inline" or "list".
-- Fetches data from [IP Geolocation API](https://ipgeolocation.io/).
 
-![Inline Layout](https://raw.githubusercontent.com/prydonian/MMM-Sunrise-Sunset/master/Screenshot.png)
-![List Layout](https://raw.githubusercontent.com/prydonian/MMM-Sunrise-Sunset/master/List.png)
+- Displays sunrise and sunset times.
+- Supports optional display of moonrise, moonset, solar noon, and day length.
+- Two layout options: "inline" or "list".
+- Fetches data from [IP Geolocation API](https://ipgeolocation.io/).
 
 ---
 
@@ -41,49 +38,31 @@ This fork includes updates and fixes to enhance compatibility and usability.
    npm install
    ```
 
-5. Fix `jQuery` loading issue:
-   ```bash
-   cp ./node_modules/jquery/dist/jquery.js .
-   ```
-
----
-
-## Updating
-
-To update the module, navigate to the module's folder and pull the latest changes:
-```bash
-cd ~/MagicMirror/modules/MMM-Sunrise-Sunset
-git pull
-```
-
-If there are new dependencies, install them:
-```bash
-npm install
-```
-
 ---
 
 ## Configuration
 
-To use this module, add the following configuration block to the `modules` array in your `config/config.js` file.
+Add the following configuration block to the `modules` array in your `config/config.js` file.
+
+### Example Configuration for Sunrise and Sunset Only
 
 ```javascript
-var config = {
-    modules: [
-        {
-            module: 'MMM-Sunrise-Sunset',
-            position: "top_right", // Or any other valid position
-            config: {
-                latitude: 59.3293,  // Your latitude (e.g., for Stockholm)
-                longitude: 18.0686, // Your longitude (e.g., for Stockholm)
-                apiKey: "YOUR_API_KEY", // Get a free API key from https://ipgeolocation.io/
-                layout: "list", // "inline" or "list"
-                showSunrise: true,
-                showSunset: true,
-                timeFormat: 24 // Use 24-hour time format
-            }
-        }
-    ]
+{
+    module: "MMM-Sunrise-Sunset",
+    position: "bottom_left",
+    config: {
+        latitude: 59.3293,  // Stockholm latitud
+        longitude: 18.0686, // Stockholm longitud
+        apiKey: "8fd423c5ca0c49f198f9598baeb5a059", // API-nyckel
+        layout: "list",   // Lista-layout
+        showSunrise: true,  // Visa soluppgång
+        showSunset: true,   // Visa solnedgång
+        showMoonrise: false, // Dölj månguppgång
+        showMoonset: false,  // Dölj månnedgång
+        showNoon: false,     // Dölj solens höjdpunkt
+        showDaylength: false, // Dölj dagens längd
+        timeFormat: 24       // 24-timmarsformat
+    }
 }
 ```
 
@@ -99,6 +78,10 @@ var config = {
 | `layout`           | Choose between `"inline"` or `"list"`.                                         |
 | `showSunrise`      | Show sunrise time. Default: `true`.                                            |
 | `showSunset`       | Show sunset time. Default: `true`.                                             |
+| `showMoonrise`     | Show moonrise time. Default: `true`.                                           |
+| `showMoonset`      | Show moonset time. Default: `true`.                                            |
+| `showNoon`         | Show solar noon time. Default: `true`.                                         |
+| `showDaylength`    | Show day length. Default: `true`.                                              |
 | `timeFormat`       | Use `12` for 12-hour format or `24` for 24-hour format. Default: `24`.         |
 
 ---
@@ -106,13 +89,15 @@ var config = {
 ## Troubleshooting
 
 ### Fix for "Loading..." Issue
+
 If the module gets stuck on "Loading...", ensure the following:
-1. **Install jQuery:**
+
+1. **Install jQuery**:
    ```bash
    npm install jquery
    ```
 
-2. **Copy `jquery.js` to the module folder:**
+2. **Copy `jquery.js` to the module folder**:
    ```bash
    cp ./node_modules/jquery/dist/jquery.js .
    ```
@@ -127,4 +112,5 @@ If the problem persists, open an issue on the [GitHub repository](https://github
 ---
 
 ## License
+
 This module is licensed under the [MIT License](https://opensource.org/licenses/MIT).
