@@ -51,17 +51,17 @@ Add the following configuration block to the `modules` array in your `config/con
     module: "MMM-Sunrise-Sunset",
     position: "bottom_left",
     config: {
-        latitude: 59.3293,  // Stockholm latitud
-        longitude: 18.0686, // Stockholm longitud
-        apiKey: "8fd423c5ca0c49f198f9598baeb5a059", // API-nyckel
-        layout: "list",   // Lista-layout
-        showSunrise: true,  // Visa soluppgång
-        showSunset: true,   // Visa solnedgång
-        showMoonrise: false, // Dölj månguppgång
-        showMoonset: false,  // Dölj månnedgång
-        showNoon: false,     // Dölj solens höjdpunkt
-        showDaylength: false, // Dölj dagens längd
-        timeFormat: 24       // 24-timmarsformat
+        latitude: 59.3293,  // Latitude for Stockholm
+        longitude: 18.0686, // Longitude for Stockholm
+        apiKey: "8fd423c5ca0c49f198f9598baeb5a059", // API key
+        layout: "list",   // Use list layout
+        showSunrise: true,  // Display sunrise time
+        showSunset: true,   // Display sunset time
+        showMoonrise: false, // Hide moonrise time
+        showMoonset: false,  // Hide moonset time
+        showNoon: false,     // Hide solar noon time
+        showDaylength: false, // Hide day length
+        timeFormat: 24       // Use 24-hour format
     }
 }
 ```
