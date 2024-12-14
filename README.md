@@ -53,7 +53,7 @@ Add the following configuration block to the `modules` array in your `config/con
     config: {
         latitude: 59.3293,  // Latitude for Stockholm
         longitude: 18.0686, // Longitude for Stockholm
-        apiKey: "8fd423c5ca0c49f198f9598baeb5a059", // API key
+        apiKey: "YOUR_API_KEY_HERE", // API key
         layout: "list",   // Use list layout
         showSunrise: true,  // Display sunrise time
         showSunset: true,   // Display sunset time
